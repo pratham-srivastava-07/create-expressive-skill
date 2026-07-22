@@ -1,0 +1,28 @@
+name: Release
+
+# Creates a GitHub release when a version tag is pushed (e.g. v0.1.0).
+# This skill is distributed as files (copied into a Claude skills directory),
+# so there is no build/publish step — the release simply packages the repo.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate SKILL.md exists
+        run: test -f SKILL.md || (echo "SKILL.md missing" && exit 1)
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
