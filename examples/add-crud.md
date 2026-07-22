@@ -2,8 +2,12 @@
 
 **User:** "Add a `product` resource with full CRUD."
 
-The `user` slice already demonstrates the full pattern. **Read the user files first, then
-mirror them** for `product`. Touch exactly these 7 places:
+First confirm a create-expressive project exists here (`src/` + `prisma/schema.prisma`). If
+not, scaffold it first, then add the entity.
+
+Read the project's **`CLAUDE.md`** to recall the convention — one file, not the whole user
+slice. The `user` slice is the reference if a detail is unclear. Then touch exactly these 7
+places for `product`:
 
 ## 1. Interface — `src/interfaces/product.ts`
 Define the entity type and DTOs (create/update input shapes), mirroring `interfaces/user.ts`.
@@ -29,11 +33,14 @@ Wire paths to controller functions; apply `auth` middleware where needed. Mirror
 `routes/user.ts`. Mount it in `src/routes/index.ts`.
 
 ## 7. Prisma model — `prisma/schema.prisma`
-Add the `Product` model, then run:
+Add the `Product` model. Then tell the user to run:
 
 ```bash
 npm run prisma:migrate
 ```
+
+Don't auto-run `npm install` + `prisma generate` to verify unless the user asks — the
+migrate command above covers it in one step.
 
 ## Rule of thumb
 

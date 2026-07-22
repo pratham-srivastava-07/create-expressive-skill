@@ -27,8 +27,9 @@ Load this skill and Claude will:
 From within Claude Code, add the marketplace, then install:
 
 ```
-/plugin marketplace add pratham-srivastava-07/backend-sdk-skill
+/plugin marketplace add pratham-srivastava-07/create-expressive-skill
 /plugin install create-expressive@create-expressive
+/reload-plugins
 ```
 
 This repo is a single-skill plugin (its `SKILL.md` lives at the root), so it installs and

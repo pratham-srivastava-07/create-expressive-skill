@@ -14,6 +14,15 @@ All notable changes to this skill are documented here. Format based on
 - `docs/`: architecture, project-initialization, supported-stack, faq.
 - `examples/`: initialize-project, add-crud, add-auth, add-websocket, project-evolution.
 
+### Changed
+- Add-entity flow now checks a project exists first (scaffold before adding when the
+  directory is empty) — fixes silent scaffolding without asking for a folder.
+- Add-entity reads the project's `CLAUDE.md` for the convention instead of the whole `user`
+  slice — cuts input tokens.
+- Compile-verification (`npm install` + `prisma generate`) is now opt-in, not automatic —
+  cuts tokens and wall-clock time; user runs `npm run prisma:migrate` when ready.
+
 ### Planned
+- `create-expressive add <entity>` generator subcommand to move add-entity boilerplate
+  off-model (hybrid: generator writes the skeleton, Claude fills domain-specific fields).
 - Stack detection + per-stack convention docs for Express+Mongo, Fastify+MySQL/Postgres.
-- A generated `CLAUDE.md` dropped into scaffolded projects (lives in the generator repo).

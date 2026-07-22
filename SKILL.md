@@ -64,6 +64,23 @@ A working **`user`** slice ships as the reference implementation (CRUD, bcrypt h
 
 ## Adding an entity — the 7 touchpoints
 
+### Precondition: does a project exist yet?
+
+Before adding any entity, check the current directory for a create-expressive project —
+i.e. both `src/` and `prisma/schema.prisma` exist. If they do NOT, this is really an
+initialization request: run the **Initialization flow** above first (which asks for the
+folder name and runs the generator), then add the entity. Never scaffold silently into the
+current directory without confirming the folder.
+
+### Learn the pattern from ONE file, not the whole slice
+
+Read the project's `CLAUDE.md` (the generator drops it at the project root) to learn the
+add-entity convention. Only open a specific `user` file if `CLAUDE.md` leaves a detail
+unclear. Do not read the entire user slice to reverse-engineer a pattern that is already
+documented — that wastes input tokens.
+
+### The 7 touchpoints
+
 To add `<Entity>` (e.g. `product`), replicate the user slice across exactly these files:
 
 1. `src/interfaces/<entity>.ts` — types
@@ -72,9 +89,18 @@ To add `<Entity>` (e.g. `product`), replicate the user slice across exactly thes
 4. `src/services/<entity>.ts` — business logic → register in `services/index.ts`
 5. `src/controllers/<entity>.ts` — request handling → register in `controllers/index.ts`
 6. `src/routes/<entity>.ts` — routes → register in `routes/index.ts`
-7. `prisma/schema.prisma` — add the model, then `npm run prisma:migrate`
+7. `prisma/schema.prisma` — add the model
 
-**Read the existing `user` files first, then mirror their patterns.** Don't invent a new structure.
+Spend tokens on what is *specific* to this entity — its fields, validation rules, relations,
+and business logic. The folder layout and wiring are invariant; mirror them without
+deliberation. Don't invent a new structure.
+
+### Verification is opt-in
+
+After writing the files, tell the user to run `npm run prisma:migrate` (and `npm install`
+if deps changed). Do NOT automatically run `npm install` + `prisma generate` to "verify it
+compiles" unless the user asks — that round-trip costs tokens and minutes for a check the
+user can do in one command.
 
 See `examples/add-crud.md` and `examples/add-auth.md` for worked examples.
 
@@ -90,6 +116,9 @@ See `examples/add-crud.md` and `examples/add-auth.md` for worked examples.
 | Mistake | Fix |
 |---|---|
 | Hand-writing the initial project | Run `npx create-expressive` |
+| Adding an entity when no project exists yet | Scaffold first (Initialization flow), then add |
+| Reading the whole user slice to learn the pattern | Read the project's `CLAUDE.md` instead |
+| Auto-running install + prisma generate to "verify" | Leave verification to the user unless asked |
 | Inventing a folder layout | Mirror the `user` slice |
 | Adding logic in controllers | Business logic goes in services |
 | Prisma calls in services | Data access goes in repositories |
