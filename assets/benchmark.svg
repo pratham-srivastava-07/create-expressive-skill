@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" role="img" aria-label="Benchmark: scaffolding a full Express and Prisma backend. Without the skill it took 20,600 tokens and about 9 minutes. With the create-expressive skill it took 1,100 tokens and roughly 2 to 3 minutes — about 19 times fewer tokens and 4 times faster.">
+  <!-- card -->
+  <rect x="8" y="8" width="884" height="454" rx="16" fill="#fcfcfb" stroke="#e5e5e3" stroke-width="1.5"/>
+
+  <!-- header -->
+  <text x="40" y="52" font-size="25" font-weight="700" fill="#1a1a1a">Scaffolding a full Express&#160;+&#160;Prisma backend</text>
+  <text x="40" y="76" font-size="14" fill="#6b7280">Claude Code — with vs without the create-expressive skill</text>
+
+  <!-- hero stats -->
+  <text x="40" y="140" font-size="46" font-weight="800" fill="#12A594">≈19×</text>
+  <text x="42" y="162" font-size="13" fill="#6b7280">fewer tokens</text>
+  <text x="220" y="140" font-size="46" font-weight="800" fill="#12A594">≈4×</text>
+  <text x="222" y="162" font-size="13" fill="#6b7280">faster</text>
+
+  <!-- legend -->
+  <rect x="470" y="112" width="12" height="12" rx="3" fill="#E8663C"/>
+  <text x="490" y="122" font-size="13" fill="#4b5563">Without skill</text>
+  <rect x="470" y="134" width="12" height="12" rx="3" fill="#12A594"/>
+  <text x="490" y="144" font-size="13" fill="#4b5563">With skill</text>
+
+  <line x1="40" y1="186" x2="860" y2="186" stroke="#ececea" stroke-width="1.5"/>
+
+  <!-- ===== Output tokens ===== -->
+  <text x="40" y="216" font-size="15" font-weight="700" fill="#1a1a1a">Output tokens</text>
+
+  <!-- without: 20,600 -> full 560px -->
+  <text x="40" y="245" font-size="12" fill="#6b7280">Without skill</text>
+  <rect x="170" y="230" width="560" height="22" rx="4" fill="#E8663C"/>
+  <text x="740" y="246" font-size="13" font-weight="700" fill="#1a1a1a">20,600</text>
+
+  <!-- with: 1,100 -> 30px -->
+  <text x="40" y="277" font-size="12" fill="#6b7280">With skill</text>
+  <rect x="170" y="262" width="30" height="22" rx="4" fill="#12A594"/>
+  <text x="208" y="278" font-size="13" font-weight="700" fill="#12A594">1,100</text>
+
+  <!-- ===== Wall-clock time ===== -->
+  <text x="40" y="326" font-size="15" font-weight="700" fill="#1a1a1a">Wall-clock time</text>
+
+  <!-- without: 9m20s (560s) -> full 560px -->
+  <text x="40" y="355" font-size="12" fill="#6b7280">Without skill</text>
+  <rect x="170" y="340" width="560" height="22" rx="4" fill="#E8663C"/>
+  <text x="740" y="356" font-size="13" font-weight="700" fill="#1a1a1a">~9 min</text>
+
+  <!-- with: ~2.5min vs ~9min -> ~150px -->
+  <text x="40" y="387" font-size="12" fill="#6b7280">With skill</text>
+  <rect x="170" y="372" width="150" height="22" rx="4" fill="#12A594"/>
+  <text x="328" y="388" font-size="13" font-weight="700" fill="#12A594">~2–3 min</text>
+
+  <!-- footnote -->
+  <text x="40" y="436" font-size="11.5" fill="#9ca3af">Single measured run · fair test (no structure hints given to either side) · same prompt, model, and empty target folder.</text>
+</svg>

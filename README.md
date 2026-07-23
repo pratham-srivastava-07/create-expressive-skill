@@ -1,5 +1,3 @@
-<!-- Add assets/banner.png here once available -->
-
 # create-expressive skill
 
 A Claude skill that pairs with the [`create-expressive`](https://www.npmjs.com/package/create-expressive)
@@ -13,18 +11,25 @@ Load this skill and Claude will:
    produces — so you never re-explain "put this in services, that in repositories"
    (saves input tokens, every session).
 
-## Why it saves tokens
+![Benchmark: ~19x fewer tokens and ~4x faster scaffolding a full Express + Prisma backend with the create-expressive skill](assets/benchmark.svg)
 
-| Phase | Without the skill | With the skill |
-|---|---|---|
-| Creating a project | Claude hand-types `package.json`, `tsconfig`, controllers… (thousands of output tokens) | Runs `npx create-expressive` — files land on disk for near-zero tokens |
-| Adding features later | You re-explain the architecture each session | Claude already knows the fixed layout and mirrors the `user` slice |
+## Install
 
-## Installation
+Pick whichever matches your setup — the skill works identically either way.
 
-**Option A — Claude Code plugin (recommended)**
+### Option A — skills.sh CLI (works with any agent)
 
-From within Claude Code, add the marketplace, then install:
+One command, no marketplace setup:
+
+```bash
+npx skills add pratham-srivastava-07/create-expressive-skill
+```
+
+This pulls the skill straight from this repo and configures it for your agent.
+
+### Option B — Claude Code plugin
+
+From within Claude Code, add the marketplace, install, then reload:
 
 ```
 /plugin marketplace add pratham-srivastava-07/create-expressive-skill
@@ -35,7 +40,7 @@ From within Claude Code, add the marketplace, then install:
 This repo is a single-skill plugin (its `SKILL.md` lives at the root), so it installs and
 auto-loads across all your projects.
 
-**Option B — manual (per-machine)**
+### Option C — manual (per-machine)
 
 Copy this folder into your Claude Code skills directory:
 
@@ -46,11 +51,21 @@ Copy this folder into your Claude Code skills directory:
 (Ensure the entry file is named `SKILL.md`.) The skill then auto-loads when you ask to
 scaffold or extend an Express backend.
 
+## Why it saves tokens
+
+| Phase | Without the skill | With the skill |
+|---|---|---|
+| Creating a project | Claude hand-types `package.json`, `tsconfig`, controllers… (thousands of output tokens) | Runs `npx create-expressive` — files land on disk for near-zero tokens |
+| Adding features later | You re-explain the architecture each session | Claude already knows the fixed layout and mirrors the `user` slice |
+
+Measured on multiple fair runs (no structure hints given to either side): **~20,600 → ~1,100
+output tokens** to scaffold a full backend — about **19× fewer**. See `assets/benchmark.svg`.
+
 ## Usage
 
+Once installed, just ask in plain language:
+
 - "Set me up a new Express backend called `orders-api`."
-- "Add a `product` resource with full CRUD."
-- "Protect the order routes with auth."
 
 See `examples/` for worked walkthroughs and `docs/` for architecture and stack details.
 
