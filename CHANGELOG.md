@@ -7,6 +7,10 @@ All notable changes to this skill are documented here. Format based on
 ## [Unreleased]
 
 ### Added
+- **Code-style awareness** (tracks generator v1.1.0): initialization now asks for and passes
+  `--style class|functional`; the add-entity flow reads the project's `CLAUDE.md` to detect the
+  style and mirrors the matching idiom (class methods vs exported functions). Both styles share
+  the same layered architecture and Prisma.
 - Initial skill: `SKILL.md` wrapping the `create-expressive` generator.
 - Hard rule: always scaffold via `npx create-expressive`, never hand-write boilerplate.
 - Initialization flow (ask for root folder → run generator → report post-scaffold steps).

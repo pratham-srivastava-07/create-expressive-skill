@@ -5,9 +5,10 @@
 First confirm a create-expressive project exists here (`src/` + `prisma/schema.prisma`). If
 not, scaffold it first, then add the entity.
 
-Read the project's **`CLAUDE.md`** to recall the convention — one file, not the whole user
-slice. The `user` slice is the reference if a detail is unclear. Then touch exactly these 7
-places for `product`:
+Read the project's **`CLAUDE.md`** to recall the convention **and the code style** (`class`
+or `functional`) — one file, not the whole user slice. Mirror whichever idiom the project
+uses; don't mix. The `user` slice is the reference if a detail is unclear. Then touch exactly
+these 7 places for `product`:
 
 ## 1. Interface — `src/interfaces/product.ts`
 Define the entity type and DTOs (create/update input shapes), mirroring `interfaces/user.ts`.

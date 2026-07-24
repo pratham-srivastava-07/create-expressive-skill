@@ -10,6 +10,7 @@
 | Validation | Zod |
 | Auth | JWT (`jsonwebtoken`) + bcrypt password hashing |
 | Errors | Centralized `AppError` + error middleware |
+| Code style | `class` (default) or `functional` — pick with `--style` (generator v1.1.0+) |
 
 ## Planned
 

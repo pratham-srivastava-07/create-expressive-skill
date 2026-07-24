@@ -12,13 +12,29 @@ npm init expressive <folder>
 
 | Flag | Effect |
 |---|---|
+| `--style <class\|functional>` | Code idiom for controllers/services/repositories. `class` is the default; omit the flag to be prompted interactively. |
 | `--force` | Scaffold into a non-empty directory instead of aborting |
+
+### Code styles (since generator v1.1.0)
+
+Both styles produce the **same layered architecture** and use **Prisma** — only the idiom
+inside each layer differs:
+
+| Style | Controllers / services / repositories are… |
+|---|---|
+| `class` (default) | classes |
+| `functional` | modules of exported functions |
+
+The generator writes a `CLAUDE.md` into the generated project recording the chosen style, so
+tooling (including this skill) can detect it when extending the project later.
 
 ## Flow the skill follows
 
-1. **Ask for the root folder name.** This is the only input required to scaffold.
-2. **Run the generator** with that folder name.
-3. **Report post-scaffold steps** — don't run them silently, because they depend on
+1. **Ask for the root folder name.** The only strictly required input.
+2. **Ask for the code style** (`class` default, or `functional`) — or omit `--style` and let
+   the generator prompt.
+3. **Run the generator** with the folder name and `--style`.
+4. **Report post-scaffold steps** — don't run them silently, because they depend on
    secrets the user must provide.
 
 ## Post-scaffold steps

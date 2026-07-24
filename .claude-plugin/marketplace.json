@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "A Claude skill that bootstraps and extends Express + Prisma backends using the create-expressive generator.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "create-expressive",
       "source": "./",
       "description": "Bootstrap and extend Express 5 + Prisma + Zod + TypeScript backends via the create-expressive generator, following its layered architecture.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Pratham Srivastava"
       },

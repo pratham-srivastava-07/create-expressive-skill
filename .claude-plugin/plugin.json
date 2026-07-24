@@ -1,7 +1,7 @@
 {
   "name": "create-expressive",
   "description": "Bootstrap and extend Express 5 + Prisma + Zod + TypeScript backends via the create-expressive generator — saves tokens on scaffolding and on re-explaining project structure.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Pratham Srivastava"
   },

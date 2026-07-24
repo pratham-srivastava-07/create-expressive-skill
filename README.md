@@ -74,6 +74,11 @@ See `examples/` for worked walkthroughs and `docs/` for architecture and stack d
 TypeScript · Express 5 · Prisma · Zod · JWT + bcrypt · centralized error handling.
 Layered: **Routes → Controllers → Services → Repositories → Prisma**.
 
+Pick a code style at scaffold time (generator v1.1.0+): `--style class` (default) or
+`--style functional` — same layered architecture and Prisma either way, only the idiom inside
+each layer changes. The skill detects the chosen style (from the generated `CLAUDE.md`) and
+mirrors it when you add new entities.
+
 More stacks (Express + Mongo, Fastify + MySQL/Postgres) are planned — see
 `docs/supported-stack.md`.
 

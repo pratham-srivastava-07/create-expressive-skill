@@ -27,12 +27,24 @@ Only after scaffolding do you edit files.
 ## Initialization flow
 
 1. Ask the user for the **root folder name** (e.g. `my-api`). Nothing else is required up front.
-2. Run `npx create-expressive <folder>`.
-3. Tell the user the post-scaffold steps (do not run them silently — they need `.env` values):
+2. Ask which **code style** they want (the generator supports two — same layered architecture
+   and Prisma either way, only the idiom inside each layer differs):
+   - `class` — controllers/services/repositories as classes (**default**)
+   - `functional` — each layer is a module of exported functions
+3. Run the generator, passing the style:
+   ```bash
+   npx create-expressive <folder> --style <class|functional>
+   ```
+   Omit `--style` to let the generator prompt interactively. `--force` scaffolds into a
+   non-empty directory.
+4. Tell the user the post-scaffold steps (do not run them silently — they need `.env` values):
    - Set `DATABASE_URL` and `JWT_SECRET` in `.env`
    - `npm install`
    - `npm run prisma:migrate`
    - `npm run dev`
+
+The generator drops a `CLAUDE.md` in the project root recording the chosen style — that marker
+is how you know which idiom to mirror later.
 
 See `docs/project-initialization.md` for details and flags.
 
@@ -72,12 +84,14 @@ initialization request: run the **Initialization flow** above first (which asks 
 folder name and runs the generator), then add the entity. Never scaffold silently into the
 current directory without confirming the folder.
 
-### Learn the pattern from ONE file, not the whole slice
+### Learn the pattern — and the style — from the project's CLAUDE.md
 
 Read the project's `CLAUDE.md` (the generator drops it at the project root) to learn the
-add-entity convention. Only open a specific `user` file if `CLAUDE.md` leaves a detail
-unclear. Do not read the entire user slice to reverse-engineer a pattern that is already
-documented — that wastes input tokens.
+add-entity convention **and which code style the project uses** (`class` or `functional`).
+This matters: you must mirror the project's existing idiom. Adding class-based code to a
+functional project (or vice versa) breaks consistency. Only open a specific `user` file if
+`CLAUDE.md` leaves a detail unclear. Do not read the entire user slice to reverse-engineer a
+pattern that is already documented — that wastes input tokens.
 
 ### The 7 touchpoints
 
@@ -90,6 +104,9 @@ To add `<Entity>` (e.g. `product`), replicate the user slice across exactly thes
 5. `src/controllers/<entity>.ts` — request handling → register in `controllers/index.ts`
 6. `src/routes/<entity>.ts` — routes → register in `routes/index.ts`
 7. `prisma/schema.prisma` — add the model
+
+The file paths above are identical for both styles — only the idiom *inside* each file differs
+(class methods vs exported functions). Match the project's style; don't mix idioms.
 
 Spend tokens on what is *specific* to this entity — its fields, validation rules, relations,
 and business logic. The folder layout and wiring are invariant; mirror them without
@@ -118,6 +135,7 @@ See `examples/add-crud.md` and `examples/add-auth.md` for worked examples.
 | Hand-writing the initial project | Run `npx create-expressive` |
 | Adding an entity when no project exists yet | Scaffold first (Initialization flow), then add |
 | Reading the whole user slice to learn the pattern | Read the project's `CLAUDE.md` instead |
+| Mixing idioms — class code in a functional project (or vice versa) | Check the project's `CLAUDE.md` for its style; match it |
 | Auto-running install + prisma generate to "verify" | Leave verification to the user unless asked |
 | Inventing a folder layout | Mirror the `user` slice |
 | Adding logic in controllers | Business logic goes in services |
