@@ -7,6 +7,8 @@ All notable changes to this skill are documented here. Format based on
 ## [Unreleased]
 
 ### Added
+- Initialization now creates `AGENTS.md` as an exact copy of the generator's `CLAUDE.md`, with
+  an overwrite guard for pre-existing repository instructions.
 - **Code-style awareness** (tracks generator v1.1.0): initialization now asks for and passes
   `--style class|functional`; the add-entity flow reads the project's `CLAUDE.md` to detect the
   style and mirrors the matching idiom (class methods vs exported functions). Both styles share

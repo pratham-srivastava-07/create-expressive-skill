@@ -58,7 +58,7 @@ scaffold or extend an Express backend.
 | Creating a project | Claude hand-types `package.json`, `tsconfig`, controllers… (thousands of output tokens) | Runs `npx create-expressive` — files land on disk for near-zero tokens |
 | Adding features later | You re-explain the architecture each session | Claude already knows the fixed layout and mirrors the `user` slice |
 
-Measured on multiple fair runs (no structure hints given to either side): **~20,600 → ~1,100
+In the measured comparison (no structure hints given to either side): **~20,600 → ~1,100
 output tokens** to scaffold a full backend — about **19× fewer**. See `assets/benchmark.svg`.
 
 ## Usage
@@ -78,6 +78,9 @@ Pick a code style at scaffold time (generator v1.1.0+): `--style class` (default
 `--style functional` — same layered architecture and Prisma either way, only the idiom inside
 each layer changes. The skill detects the chosen style (from the generated `CLAUDE.md`) and
 mirrors it when you add new entities.
+
+After scaffolding, the skill also creates `AGENTS.md` as an exact copy of `CLAUDE.md`, keeping
+the generated project guidance consistent across agent conventions.
 
 More stacks (Express + Mongo, Fastify + MySQL/Postgres) are planned — see
 `docs/supported-stack.md`.

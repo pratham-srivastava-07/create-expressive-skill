@@ -11,7 +11,15 @@
 npx create-expressive orders-api
 ```
 
-3. Report the post-scaffold steps:
+3. Copy the generated project guidance exactly:
+
+```bash
+cp orders-api/CLAUDE.md orders-api/AGENTS.md
+```
+
+If `AGENTS.md` already exists and differs, preserve it and ask before overwriting.
+
+4. Report the post-scaffold steps:
 
 ```bash
 cd orders-api

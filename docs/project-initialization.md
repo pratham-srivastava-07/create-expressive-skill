@@ -25,8 +25,9 @@ inside each layer differs:
 | `class` (default) | classes |
 | `functional` | modules of exported functions |
 
-The generator writes a `CLAUDE.md` into the generated project recording the chosen style, so
-tooling (including this skill) can detect it when extending the project later.
+The generator writes a `CLAUDE.md` into the generated project recording the chosen style. After
+scaffolding, the skill copies that file byte-for-byte to `AGENTS.md`, giving tools that follow
+either convention the same project instructions.
 
 ## Flow the skill follows
 
@@ -34,7 +35,9 @@ tooling (including this skill) can detect it when extending the project later.
 2. **Ask for the code style** (`class` default, or `functional`) — or omit `--style` and let
    the generator prompt.
 3. **Run the generator** with the folder name and `--style`.
-4. **Report post-scaffold steps** — don't run them silently, because they depend on
+4. **Create `AGENTS.md`** by copying the generated `CLAUDE.md` exactly. If an existing
+   `AGENTS.md` differs, preserve it and ask before overwriting.
+5. **Report post-scaffold steps** — don't run them silently, because they depend on
    secrets the user must provide.
 
 ## Post-scaffold steps
@@ -56,6 +59,8 @@ The server starts on the port defined in `.env` / `src/config/env.ts`.
 <folder>/
 ├── .env.example
 ├── .gitignore
+├── AGENTS.md            (identical copy of generated CLAUDE.md, added by the skill)
+├── CLAUDE.md
 ├── package.json
 ├── tsconfig.json
 ├── prisma/

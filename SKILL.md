@@ -37,14 +37,19 @@ Only after scaffolding do you edit files.
    ```
    Omit `--style` to let the generator prompt interactively. `--force` scaffolds into a
    non-empty directory.
-4. Tell the user the post-scaffold steps (do not run them silently — they need `.env` values):
+4. Create `<folder>/AGENTS.md` with content byte-for-byte identical to the generated
+   `<folder>/CLAUDE.md`. Read `CLAUDE.md` as the source of truth; do not independently
+   reconstruct or paraphrase it. If `AGENTS.md` already exists and differs (possible with
+   `--force`), preserve it and ask before overwriting repository instructions.
+5. Tell the user the post-scaffold steps (do not run them silently — they need `.env` values):
    - Set `DATABASE_URL` and `JWT_SECRET` in `.env`
    - `npm install`
    - `npm run prisma:migrate`
    - `npm run dev`
 
-The generator drops a `CLAUDE.md` in the project root recording the chosen style — that marker
-is how you know which idiom to mirror later.
+The generator drops a `CLAUDE.md` in the project root recording the chosen style. The skill
+copies it to `AGENTS.md` so Claude Code and agents that follow the `AGENTS.md` convention receive
+the same project guidance. Keep both files identical when scaffolding.
 
 See `docs/project-initialization.md` for details and flags.
 
@@ -136,6 +141,7 @@ See `examples/add-crud.md` and `examples/add-auth.md` for worked examples.
 | Adding an entity when no project exists yet | Scaffold first (Initialization flow), then add |
 | Reading the whole user slice to learn the pattern | Read the project's `CLAUDE.md` instead |
 | Mixing idioms — class code in a functional project (or vice versa) | Check the project's `CLAUDE.md` for its style; match it |
+| Creating different guidance in `AGENTS.md` | Copy the generated `CLAUDE.md` exactly; do not paraphrase it |
 | Auto-running install + prisma generate to "verify" | Leave verification to the user unless asked |
 | Inventing a folder layout | Mirror the `user` slice |
 | Adding logic in controllers | Business logic goes in services |
